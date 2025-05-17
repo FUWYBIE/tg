@@ -66,7 +66,9 @@ def post_news():
     except TelegramError as e:
         logger.error(f"Ошибка при отправке сообщения: {e}")
 
-scheduler = BlockingScheduler()
+import pytz
+
+scheduler = BlockingScheduler(timezone=pytz.timezone("Europe/Moscow"))
 
 for time_str in POST_TIMES:
     hour, minute = map(int, time_str.split(":"))
